@@ -1,0 +1,59 @@
+#参考
+#https://note.com/kiyo_ai_note/n/nac8c77768c07 大部分のコードを参考　e-stat api json Pythonで検索
+#https://tanidaiz.com/pythonで書き出したcsvが文字化けする/　文字化けの対処
+#月別コード 1:160,2:190,3:220,4:250,5:280,6:310,7:340,8:370,9:400,10:430,11:460,12:490
+
+import requests
+import os
+import csv
+
+appId_estat = '420c1d8b16af570fee49f0efb7041ec115a63c14' #APIキー
+url = 'http://api.e-stat.go.jp/rest/3.0/app/getSimpleStatsData' #エンドポイント
+
+params = {'appId':appId_estat,
+        'lang':'J',
+        'statsDataId':'0003425294',
+        'metaGetFlg':'Y',
+        'cntGetFlg':'N',
+        'explanationGetFlg':'Y',
+        'annotationGetFlg':'Y',
+        'sectionHeaderFlg':'1',
+        'replaceSpChars':'0',
+        'cdAreaFrom':'50103',
+        'cdAreaTo':'50702',
+        'cdTime':'2023000000',
+        'cdCat01From':'020120000',
+        'cdCat01To':'0202300090',
+        'cdCat02':'280'} #パラメータ
+
+res = requests.get(url, params=params)
+
+if not os.path.exists('data'):
+    os.makedirs('data')
+with open('data/2023beef.csv', 'w', encoding='utf_8_sig') as f:
+    f.write(res.text)
+
+params = {'appId':appId_estat,
+        'lang':'J',
+        'statsDataId':'0003425294',
+        'metaGetFlg':'Y',
+        'cntGetFlg':'N',
+        'explanationGetFlg':'Y',
+        'annotationGetFlg':'Y',
+        'sectionHeaderFlg':'1',
+        'replaceSpChars':'0',
+        'cdAreaFrom':'50103',
+        'cdAreaTo':'50702',
+        'cdTime':'2023000000',
+        'cdCat01':'020610011,020610019,020621000,020622000,020629010,020629090,050400011,050400012,050400019,050400091,050400099,051199110,160249100,160250100,160250291,160250292,160290100,',
+        'cdCat02':'280'} #パラメータ
+
+res = requests.get(url, params=params)
+
+if not os.path.exists('data'):
+    os.makedirs('data')
+with open('data/2023offal.csv', 'w', encoding='utf_8_sig') as f:
+    f.write(res.text)
+
+#jsonData = res.json()
+#jsonData
