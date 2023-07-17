@@ -1,0 +1,80 @@
+import requests
+
+STATS_DATA_END_POINT="http://api.estat.go.jp/rest/3.0/app/getStatsData"
+
+def getStatsData(dataSetId=None,\
+                 statsDataId=None,\
+                 lvTab=None,\
+                 cdTab=None,\
+                 cdTabFrom=None,\
+                 cdTabTo=None,\
+                 lvTime=None,\
+                 cdTime=None,\
+                 cdTimeFrom=None,\
+                 cdTimeTo=None,\
+                 lvArea=None,\
+                 cdArea=None,\
+                 cdAreaFrom=None,\
+                 cdAreaTo=None,\
+                 lvCat=None,\
+                 cdCat=None,\
+                 cdCatFrom=None,\
+                 cdCatTo=None,\
+                 startPosition=None,\
+                 limit=None,\
+                 metaGetFlg=None,\
+                 cntGetFlg=None,\
+                 explanationGetFlg=None,\
+                 annotationGetFlg=None,\
+                 replaceSpChar=None,\
+                 sectionHeaderFlg=None):
+
+  url = STATS_DATA_END_POINT + "?appId=" + "420c1d8b16af570fee49f0efb7041ec115a63c14" + \
+  ("&dataSetId=" + dataSetId if dataSetId is not None else "")+ \
+  ("&statsDataId=" + statsDataId if statsDataId is not None else "") + \
+  ("&lvTab=" + lvTab if lvTab is not None else "") + \
+  ("&cdTab=" + cdTab if cdTab is not None else "") + \
+  ("&cdTabFrom=" + cdTabFrom if cdTabFrom is not None else "") + \
+  ("&cdTabTo=" + cdTabTo if cdTabTo is not None else "") + \
+  ("&lvTime=" + lvTime if lvTime is not None else "") + \
+  ("&cdTime=" + cdTime if cdTime is not None else "") + \
+  ("&cdTimeFrom=" + cdTimeFrom if cdTimeFrom is not None else "") + \
+  ("&cdTimeTo=" + cdTimeTo if cdTimeTo is not None else "") + \
+  ("&lvArea=" + lvArea if lvArea is not None else "") + \
+  ("&cdArea=" + cdArea if cdArea is not None else "") + \
+  ("&cdAreaFrom=" + cdAreaFrom if cdAreaFrom is not None else "") + \
+  ("&cdAreaTo=" + cdAreaTo if cdAreaTo is not None else "") + \
+  ("".join(
+      ["&lvCat" + f"{i+1:02}" + "=" + lvCat[i] for i in range(0,len(lvCat))]
+      ) if lvCat is not None else "") + \
+  ("".join(
+      ["&cdCat" + f"{i+1:02}" + "=" + cdCat[i] for i in range(0,len(cdCat))]
+      ) if cdCat is not None else "") + \
+  ("".join(
+      ["&cdCat" + f"{i+1:02}"+"From=" + cdCatFrom[i] \
+      for i in range(0,len(cdCatFrom))]
+      ) if cdCatFrom is not None else "") + \
+  ("".join(
+      ["&cdCat" + f"{i+1:02}" + "To=" + cdCatTo[i] \
+      for i in range(0,len(cdCatTo))]
+      ) if cdCatTo is not None else "") + \
+  ("&startPosition=" + startPosition if startPosition is not None else "") + \
+  ("&limit=" + limit if limit is not None else "") + \
+  ("&metaGetFlg=" + metaGetFlg if metaGetFlg is not None else "") + \
+  ("&cntGetFlg=" + cntGetFlg if cntGetFlg is not None else "") + \
+  ("&explanationGetFlg=" + \
+    explanationGetFlg if explanationGetFlg is not None else "") + \
+  ("&annotationGetFlg=" + \
+    annotationGetFlg if annotationGetFlg is not None else "") + \
+  ("&replaceSpChar=" + \
+    replaceSpChar if replaceSpChar is not None else "") + \
+  ("&sectionHeaderFlg=" + \
+    sectionHeaderFlg if sectionHeaderFlg is not None else "")
+
+  result = requests.get(url)
+
+  print("HTTPステータスコード:%s" %(result))
+
+  print("レスポンス:\r\n%s" %(result.text))
+
+getStatsData(statsDataId="0003425294",cdTime="2023000000",cdArea="50105",explanationGetFlg="Y",cdCat=["160100900"])
