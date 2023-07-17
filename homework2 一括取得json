@@ -1,10 +1,11 @@
-#https://www.formatter.xyz/curl-to-python-converter
+#https://api.e-stat.go.jp/swagger-ui/e-statapi3.0.html#/ このサイトでcurlを出力
+#https://www.formatter.xyz/curl-to-python-converter　curlをPythonの書き方に変換
 #https://pg-chain.com/python-json-dump jsonファイルの出力　json python 書き出しで検索
 
 import requests
 import os
 import json
-
+cUrl
 appId_estat = '420c1d8b16af570fee49f0efb7041ec115a63c14' #APIキー
 headers = {
     'accept': 'application/json',
