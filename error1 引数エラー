@@ -3,7 +3,7 @@
 
 import requests
 
-appId_estat = '420c1d8b16af570fee49f0efb7041ec115a63c14' #APIキー
+appId_estat = '' #APIキー
 url = 'http://api.e-stat.go.jp/rest/3.0/app/json/getStatsData?appId=420c1d8b16af570fee49f0efb7041ec115a63c14' #エンドポイント
 
 params = [{"statsDataId":"0003425294","cdAreaFrom":"50103","cdAreaTo":"50702","cdTime":"2023000000","cdCat01From":"020120000","cdCat01To":"020230090","cdCat02":"280"},
