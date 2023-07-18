@@ -6,7 +6,7 @@ import requests
 import os
 import json
 cUrl
-appId_estat = '420c1d8b16af570fee49f0efb7041ec115a63c14' #APIキー
+appId_estat = '' #APIキー
 headers = {
     'accept': 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded',
