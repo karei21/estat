@@ -29,7 +29,7 @@ def getStatsData(dataSetId=None,\
                  replaceSpChar=None,\
                  sectionHeaderFlg=None):
 
-  url = STATS_DATA_END_POINT + "?appId=" + "420c1d8b16af570fee49f0efb7041ec115a63c14" + \
+  url = STATS_DATA_END_POINT + "?appId=" + "appId" + \
   ("&dataSetId=" + dataSetId if dataSetId is not None else "")+ \
   ("&statsDataId=" + statsDataId if statsDataId is not None else "") + \
   ("&lvTab=" + lvTab if lvTab is not None else "") + \
